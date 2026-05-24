@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Giant-Slayer Playbook | BJJ for Smaller Grapplers</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-color: #bb86fc;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent: #03dac6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+        
+        /* Navigation */
+        nav {
+            position: sticky; top: 0; background-color: rgba(30, 30, 30, 0.95);
+            padding: 1rem 2rem; display: flex; justify-content: space-between;
+            align-items: center; border-bottom: 1px solid #333; z-index: 1000;
+        }
+        nav h1 { font-size: 1.2rem; color: var(--primary-color); }
+        nav ul { list-style: none; display: flex; gap: 1.5rem; }
+        nav a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--accent); }
+
+        /* Hero Section */
+        header {
+            padding: 6rem 2rem; text-align: center; background: linear-gradient(180deg, #1a1a1a 0%, var(--bg-color) 100%);
+        }
+        header h2 { font-size: 3rem; margin-bottom: 1rem; color: #fff; }
+        header p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+        /* Content Sections */
+        section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; border-bottom: 1px solid #2a2a2a; }
+        h3 { font-size: 2rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+        h4 { font-size: 1.3rem; margin: 1.5rem 0 0.5rem; color: #fff; }
+        p { margin-bottom: 1rem; color: var(--text-muted); }
+        ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
+        li { margin-bottom: 0.5rem; }
+
+        /* Highlight Box */
+        .highlight-box {
+            background-color: var(--surface-color); padding: 1.5rem; border-left: 4px solid var(--accent);
+            border-radius: 4px; margin: 2rem 0;
+        }
+
+        /* Guard Gallery Grid */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;
+        }
+        .card {
+            background-color: var(--surface-color); border-radius: 8px; overflow: hidden;
+            transition: transform 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card-img {
+            width: 100%; height: 200px; background-color: #333; display: flex;
+            align-items: center; justify-content: center; color: #777; font-size: 0.9rem;
+        }
+        .card-content { padding: 1.5rem; }
+        .card h4 { margin-top: 0; color: var(--accent); }
+
+        /* Responsive Video Grid */
+        .video-grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 2.5rem; 
+            margin-top: 2rem;
+        }
+        .video-card {
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Forces 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-info {
+            padding: 1.5rem;
+        }
+        .video-info h4 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; gap: 1rem; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            header h2 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>Giant-Slayer Playbook</h1>
+        <ul>
+            <li><a href="#strategy">Core Strategy</a></li>
+            <li><a href="#backtakes">Taking the Back</a></li>
+            <li><a href="#mount">Heavy Mount</a></li>
+            <li><a href="#guards">Guard Gallery</a></li>
+            <li><a href="#videos">Video Library</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h2>Survive and Dominate</h2>
+        <p>A structural, mechanical approach to bypassing size and strength advantages on the mats.</p>
+    </header>
+
+    <section id="strategy">
+        <h3>Core Strategy: Moving Yourself</h3>
+        <p>When you are giving up 20+ pounds, you cannot play a game of physics and expect to win. If you meet force with force, the bigger person prevails. Stop trying to move them and start moving yourself.</p>
+        
+        <h4>1. Frames Over Muscle</h4>
+        <p>A bigger opponent's goal is to flatten you. Always stay on a hip. Rely on frames—using the bones of your forearms and shins—to bear their weight. Keep your elbows glued to your ribs to prevent isolation.</p>
+
+        <div class="highlight-box">
+            <h4>The Pacing Advantage</h4>
+            <p>Big grapplers have to carry extra muscle, requiring massive amounts of oxygen. Use your Monday HIIT sessions to build the gas tank, then use that cardio engine to out-scramble bigger opponents during your Friday and Saturday rolls. Don't match their explosive bursts early—survive the first three minutes, then attack when they fade.</p>
+        </div>
+    </section>
+
+    <section id="backtakes">
+        <h3>Taking the Back</h3>
+        <p>The back is the great equalizer. It is the only position where their size offers zero offensive advantage.</p>
+        
+        <h4>The Arm Drag</h4>
+        <p>Secure a cross-grip on the wrist and a high grip on their triceps. Do not try to drag their weight; use their anchored arm as a post to scoot your own hips to the outside.</p>
+
+        <h4>The Kimura Trap to Chair Sit</h4>
+        <ol>
+            <li><strong>Lock the Figure-Four:</strong> Weave your arm through and secure a tight Kimura grip from top side control or half guard.</li>
+            <li><strong>Force the Defense:</strong> When they lock their hands or grab their belt, they have anchored their shoulder to your chest.</li>
+            <li><strong>Post and Clear:</strong> Step your outside leg completely over their head, entering a "chair sit" position.</li>
+            <li><strong>Leverage the Roll:</strong> Sit back toward their hips, pulling the grip with you. Their own locked hands will act as a lever, forcing them to roll and exposing their back for your hooks.</li>
+        </ol>
+    </section>
+
+    <section id="mount">
+        <h3>Maintaining the Heavy Mount</h3>
+        <p>If you secure the mount, do not let them launch you back to guard with an Upa (bridge).</p>
+        <ul>
+            <li><strong>Play Low Mount First:</strong> Drop your hips flat against theirs and insert grapevines (threading your feet under their ankles). Stretch their legs out so they cannot plant their feet to bridge.</li>
+            <li><strong>Spinal Misalignment:</strong> Secure a deep crossface to turn their jaw away from you, and underhook the far arm. Where the head goes, the body follows.</li>
+            <li><strong>The Wet Blanket:</strong> Do not squeeze tightly with your thighs—this makes you rigid and easy to tip over. Relax your muscles, sink your weight, and make them carry 100% of your mass.</li>
+        </ul>
+    </section>
+
+    <section id="guards">
+        <h3>The Guard Gallery</h3>
+        <p>Guards that dictate distance and keep their weight off your center line.</p>
+        
+        <div class="gallery-grid">
+            <div class="card">
+                <div class="card-img">[ Image: Knee Shield / Z-Guard ]</div>
+                <div class="card-content">
+                    <h4>Knee Shield</h4>
+                    <p>Place your top shin across their chest or biceps to create a structural wall. Perfect for stopping the smash pass.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">[ Image: Butterfly Guard ]</div>
+                <div class="card-content">
+                    <h4>Butterfly Guard</h4>
+                    <p>Uses your feet as hooks inside their thighs. Fall back and use their own forward driving momentum to elevate and sweep them.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img">[ Image: Spider Guard ]</div>
+                <div class="card-content">
+                    <h4>Spider Guard</h4>
+                    <p>Control the sleeves and place your feet directly on their biceps. This pits the strength of your leg press against their shoulders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos">
+        <h3>Diss BJJ Video Library</h3>
+        <p>Study these mechanics before your weekend rolls. Here are curated breakdowns of the core techniques we use to neutralize size and strength.</p>
+        
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/p1k1I14aG08" title="Arm Drag Breakdown" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>The 2-on-1 Arm Drag</h4>
+                    <p>A detailed look at using the opponent's anchored weight as a post to pull yourself to the back.</p>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/l592wR1-tEE" title="Kimura Trap System" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>Kimura Trap to Chair Sit</h4>
+                    <p>Watch how to use the Kimura grip defensively to force the roll and secure the back hooks.</p>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/5U2V2dGZ5r4" title="Heavy Mount Mechanics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>Heavy Mount Mechanics</h4>
+                    <p>Visualizing the wet blanket concept, grapevines, and spinal misalignment to stop the bridge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Giant-Slayer Playbook. Focus on frames, angles, and cardio.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
