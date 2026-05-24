@@ -4,252 +4,1034 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Giant-Slayer Playbook | BJJ for Smaller Grapplers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --primary-color: #bb86fc;
-            --text-main: #e0e0e0;
-            --text-muted: #a0a0a0;
-            --accent: #03dac6;
+            --bg: #0d0d0d;
+            --surface: #161616;
+            --surface2: #1f1f1f;
+            --border: rgba(255,255,255,0.07);
+            --gold: #c9a84c;
+            --gold-light: #e8c96e;
+            --red: #c0392b;
+            --red-light: #e74c3c;
+            --text: #e8e8e8;
+            --muted: #777;
+            --accent: #c9a84c;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
-        
-        /* Navigation */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Barlow', sans-serif;
+            font-weight: 300;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── NAVIGATION ── */
         nav {
-            position: sticky; top: 0; background-color: rgba(30, 30, 30, 0.95);
-            padding: 1rem 2rem; display: flex; justify-content: space-between;
-            align-items: center; border-bottom: 1px solid #333; z-index: 1000;
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(13,13,13,0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 2.5rem;
+            height: 58px;
         }
-        nav h1 { font-size: 1.2rem; color: var(--primary-color); }
-        nav ul { list-style: none; display: flex; gap: 1.5rem; }
-        nav a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: var(--accent); }
+        .nav-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        nav ul { list-style: none; display: flex; gap: 0; }
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0 1rem;
+            height: 58px;
+            display: flex; align-items: center;
+            transition: color 0.2s;
+            border-right: 1px solid var(--border);
+        }
+        nav a:first-child { border-left: 1px solid var(--border); }
+        nav a:hover { color: var(--gold); }
 
-        /* Hero Section */
+        /* ── HERO ── */
         header {
-            padding: 6rem 2rem; text-align: center; background: linear-gradient(180deg, #1a1a1a 0%, var(--bg-color) 100%);
+            position: relative;
+            min-height: 540px;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            padding: 6rem 2rem;
+            background: var(--bg);
         }
-        header h2 { font-size: 3rem; margin-bottom: 1rem; color: #fff; }
-        header p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: 
+                radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,168,76,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 20%, rgba(192,57,43,0.08) 0%, transparent 60%);
+        }
+        .hero-lines {
+            position: absolute; inset: 0;
+            background-image: repeating-linear-gradient(
+                0deg, transparent, transparent 60px,
+                rgba(255,255,255,0.02) 60px, rgba(255,255,255,0.02) 61px
+            );
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 720px; }
+        .hero-eyebrow {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex; align-items: center; justify-content: center; gap: 1rem;
+        }
+        .hero-eyebrow::before, .hero-eyebrow::after {
+            content: ''; display: block;
+            height: 1px; width: 60px;
+            background: linear-gradient(90deg, transparent, var(--gold));
+        }
+        .hero-eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
+        header h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(3.5rem, 9vw, 7rem);
+            font-weight: 900;
+            line-height: 0.92;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+        header h1 em { font-style: normal; color: var(--gold); }
+        header .subtitle {
+            font-size: 1.05rem; font-weight: 300;
+            color: var(--muted); max-width: 500px;
+            margin: 0 auto 2.5rem;
+        }
+        .hero-stats {
+            display: flex; justify-content: center; gap: 0;
+            border: 1px solid var(--border);
+            display: inline-flex;
+        }
+        .stat {
+            padding: 1rem 2rem;
+            border-right: 1px solid var(--border);
+        }
+        .stat:last-child { border-right: none; }
+        .stat-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.8rem; font-weight: 800;
+            color: var(--gold); display: block;
+        }
+        .stat-label {
+            font-size: 0.7rem; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--muted);
+        }
 
-        /* Content Sections */
-        section { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; border-bottom: 1px solid #2a2a2a; }
-        h3 { font-size: 2rem; color: var(--primary-color); margin-bottom: 1.5rem; }
-        h4 { font-size: 1.3rem; margin: 1.5rem 0 0.5rem; color: #fff; }
-        p { margin-bottom: 1rem; color: var(--text-muted); }
-        ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
-        li { margin-bottom: 0.5rem; }
+        /* ── SECTIONS ── */
+        .section {
+            max-width: 1100px; margin: 0 auto;
+            padding: 5rem 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.7rem; font-weight: 600;
+            letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 0.75rem;
+        }
+        .section h2 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800; text-transform: uppercase;
+            line-height: 1; margin-bottom: 2rem; color: #fff;
+        }
+        p { margin-bottom: 1rem; color: #aaa; font-size: 0.97rem; }
 
-        /* Highlight Box */
-        .highlight-box {
-            background-color: var(--surface-color); padding: 1.5rem; border-left: 4px solid var(--accent);
-            border-radius: 4px; margin: 2rem 0;
+        /* ── CALLOUT BOX ── */
+        .callout {
+            border-left: 3px solid var(--gold);
+            background: rgba(201,168,76,0.06);
+            padding: 1.5rem 1.75rem;
+            margin: 2.5rem 0;
         }
+        .callout h4 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--gold-light); margin-bottom: 0.5rem;
+        }
+        .callout p { margin: 0; color: #bbb; }
 
-        /* Guard Gallery Grid */
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;
-        }
-        .card {
-            background-color: var(--surface-color); border-radius: 8px; overflow: hidden;
-            transition: transform 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-        .card:hover { transform: translateY(-5px); }
-        .card-img {
-            width: 100%; height: 200px; background-color: #333; display: flex;
-            align-items: center; justify-content: center; color: #777; font-size: 0.9rem;
-        }
-        .card-content { padding: 1.5rem; }
-        .card h4 { margin-top: 0; color: var(--accent); }
-
-        /* Responsive Video Grid */
-        .video-grid {
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 2.5rem; 
+        /* ── TWO-COL LAYOUT ── */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
             margin-top: 2rem;
         }
-        .video-card {
-            background-color: var(--surface-color);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        .two-col img {
+            width: 100%; aspect-ratio: 4/3;
+            object-fit: cover;
+            border: 1px solid var(--border);
         }
-        .video-wrapper {
+
+        /* ── STEPS LIST ── */
+        .steps { list-style: none; counter-reset: step; margin: 1.5rem 0; }
+        .steps li {
+            counter-increment: step;
+            display: grid;
+            grid-template-columns: 44px 1fr;
+            gap: 1rem;
+            align-items: start;
+            margin-bottom: 1.25rem;
+            color: #aaa;
+            font-size: 0.97rem;
+        }
+        .steps li::before {
+            content: counter(step, decimal-leading-zero);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 1.1rem;
+            color: var(--gold);
+            border: 1px solid rgba(201,168,76,0.4);
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .steps strong { color: #ddd; font-weight: 500; display: block; margin-bottom: 0.2rem; }
+
+        /* ── BULLETS ── */
+        .bullets { list-style: none; margin: 1.5rem 0; }
+        .bullets li {
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--border);
+            color: #aaa;
+            font-size: 0.97rem;
+            display: flex; gap: 1rem; align-items: start;
+        }
+        .bullets li::before {
+            content: '─';
+            color: var(--gold);
+            flex-shrink: 0;
+            margin-top: 0.05rem;
+        }
+        .bullets strong { color: #ddd; font-weight: 500; }
+
+        /* ── GUARD GALLERY ── */
+        #guards { border-bottom: none; }
+        .guard-intro { max-width: 680px; margin-bottom: 3rem; }
+        .guard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+        .guard-card {
+            background: var(--surface);
+            display: flex; flex-direction: column;
+            transition: background 0.2s;
+        }
+        .guard-card:hover { background: var(--surface2); }
+        .guard-img-wrap {
+            position: relative; overflow: hidden;
+        }
+        .guard-img-wrap img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .guard-card:hover .guard-img-wrap img { transform: scale(1.03); }
+        .guard-img-placeholder {
+            width: 100%; aspect-ratio: 16/9;
+            background: #1a1a1a;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 0.5rem;
+        }
+        .guard-img-placeholder svg { opacity: 0.2; }
+        .guard-img-placeholder span {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.75rem; letter-spacing: 0.1em;
+            text-transform: uppercase; color: #444;
+        }
+        .guard-tag {
+            position: absolute; top: 0.75rem; left: 0.75rem;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.65rem; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+        }
+        .tag-open { background: rgba(201,168,76,0.9); color: #0d0d0d; }
+        .tag-half { background: rgba(192,57,43,0.9); color: #fff; }
+        .tag-closed { background: rgba(60,60,60,0.9); color: #ccc; }
+
+        .guard-body { padding: 1.5rem; flex: 1; }
+        .guard-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.4rem; font-weight: 800;
+            text-transform: uppercase; color: #fff;
+            margin-bottom: 0.25rem;
+        }
+        .guard-aka {
+            font-size: 0.72rem; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: 0.8rem;
+        }
+        .guard-desc { font-size: 0.9rem; color: #888; margin-bottom: 1.2rem; }
+        .guard-meta {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 0.5rem; font-size: 0.78rem;
+        }
+        .guard-meta-item { }
+        .guard-meta-label {
+            font-size: 0.65rem; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--muted);
+            margin-bottom: 0.2rem;
+        }
+        .guard-meta-val { color: #ccc; font-weight: 400; }
+
+        .strength-bar {
+            height: 3px;
+            background: var(--border);
+            margin-top: 0.3rem;
             position: relative;
-            padding-bottom: 56.25%; /* Forces 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            background-color: #000;
+        }
+        .strength-fill {
+            position: absolute; top: 0; left: 0; height: 100%;
+            background: var(--gold);
+            transition: width 0.6s ease;
+        }
+
+        .guard-attacks {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            margin-top: 0;
+        }
+        .guard-attacks-label {
+            font-size: 0.65rem; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--muted);
+            margin-bottom: 0.6rem;
+        }
+        .attack-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .chip {
+            font-size: 0.7rem; letter-spacing: 0.05em;
+            padding: 0.25rem 0.6rem;
+            border: 1px solid rgba(201,168,76,0.3);
+            color: var(--gold);
+            background: rgba(201,168,76,0.05);
+        }
+
+        /* ── VIDEO SECTION ── */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .video-card { background: var(--surface); border: 1px solid var(--border); }
+        .video-wrapper {
+            position: relative; padding-bottom: 56.25%;
+            height: 0; overflow: hidden; background: #000;
         }
         .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; border: 0;
         }
-        .video-info {
-            padding: 1.5rem;
-        }
+        .video-info { padding: 1.25rem 1.5rem; }
         .video-info h4 {
-            margin-top: 0;
-            color: var(--accent);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700; font-size: 1.1rem;
+            text-transform: uppercase; color: var(--gold-light);
+            margin-bottom: 0.35rem;
+        }
+        .video-info p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center; padding: 3rem 2rem;
+            color: var(--muted); font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+        .footer-logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.4rem; font-weight: 800;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: 0.5rem;
         }
 
-        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; }
+        /* ── DIVIDER ── */
+        .divider {
+            display: flex; align-items: center; gap: 1rem;
+            margin: 2.5rem 0;
+            color: var(--muted); font-size: 0.75rem;
+            letter-spacing: 0.15em; text-transform: uppercase;
+        }
+        .divider::before, .divider::after {
+            content: ''; flex: 1; height: 1px;
+            background: var(--border);
+        }
 
-        @media (max-width: 768px) {
-            nav { flex-direction: column; gap: 1rem; }
-            nav ul { flex-wrap: wrap; justify-content: center; }
-            header h2 { font-size: 2.2rem; }
+        @media (max-width: 800px) {
+            nav ul { display: none; }
+            header h1 { font-size: 3.5rem; }
+            .two-col { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-stats { flex-direction: column; }
+            .stat { border-right: none; border-bottom: 1px solid var(--border); }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <h1>Giant-Slayer Playbook</h1>
+        <div class="nav-logo">Giant-Slayer Playbook</div>
         <ul>
-            <li><a href="#strategy">Core Strategy</a></li>
-            <li><a href="#backtakes">Taking the Back</a></li>
-            <li><a href="#mount">Heavy Mount</a></li>
+            <li><a href="#strategy">Strategy</a></li>
+            <li><a href="#backtakes">Back Takes</a></li>
+            <li><a href="#mount">Mount</a></li>
             <li><a href="#guards">Guard Gallery</a></li>
             <li><a href="#videos">Video Library</a></li>
         </ul>
     </nav>
 
     <header>
-        <h2>Survive and Dominate</h2>
-        <p>A structural, mechanical approach to bypassing size and strength advantages on the mats.</p>
+        <div class="hero-bg"></div>
+        <div class="hero-lines"></div>
+        <div class="hero-content">
+            <div class="hero-eyebrow">BJJ for Smaller Grapplers</div>
+            <h1>Survive<br>& <em>Dominate</em></h1>
+            <p class="subtitle">A structural, mechanical approach to bypassing size and strength advantages on the mats.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-num">8</span>
+                    <span class="stat-label">Guard Systems</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">3</span>
+                    <span class="stat-label">Core Positions</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">6</span>
+                    <span class="stat-label">Video Breakdowns</span>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <section id="strategy">
-        <h3>Core Strategy: Moving Yourself</h3>
-        <p>When you are giving up 20+ pounds, you cannot play a game of physics and expect to win. If you meet force with force, the bigger person prevails. Stop trying to move them and start moving yourself.</p>
-        
-        <h4>1. Frames Over Muscle</h4>
-        <p>A bigger opponent's goal is to flatten you. Always stay on a hip. Rely on frames—using the bones of your forearms and shins—to bear their weight. Keep your elbows glued to your ribs to prevent isolation.</p>
+    <!-- ── CORE STRATEGY ── -->
+    <section id="strategy" class="section">
+        <div class="section-label">01 — Core Philosophy</div>
+        <h2>Move Yourself,<br>Not Them</h2>
 
-        <div class="highlight-box">
-            <h4>The Pacing Advantage</h4>
-            <p>Big grapplers have to carry extra muscle, requiring massive amounts of oxygen. Use your Monday HIIT sessions to build the gas tank, then use that cardio engine to out-scramble bigger opponents during your Friday and Saturday rolls. Don't match their explosive bursts early—survive the first three minutes, then attack when they fade.</p>
+        <div class="two-col">
+            <div>
+                <p>When you're giving up 20+ pounds, you cannot play a game of physics and expect to win. If you meet force with force, the bigger person prevails. The answer is simple: stop trying to move them and start moving yourself.</p>
+                <p>Every technique in this playbook follows one rule — use their anchored mass as a reference point to redirect your own body. You become the weapon. They become the post.</p>
+
+                <div class="callout">
+                    <h4>The Pacing Advantage</h4>
+                    <p>Big grapplers carry extra muscle — it demands massive oxygen. Build your gas tank with HIIT, then use superior cardio to out-scramble bigger opponents. Survive the first three minutes. Attack when they fade.</p>
+                </div>
+
+                <h3 style="font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:700; text-transform:uppercase; color:#fff; margin:1.5rem 0 0.75rem;">Frames Over Muscle</h3>
+                <p>A bigger opponent's goal is to flatten you. Always stay on a hip. Rely on frames — using the bones of your forearms and shins — to bear their weight. Elbows glued to ribs prevent isolation.</p>
+            </div>
+            <div>
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Grappling_-_arm_drag.jpg/640px-Grappling_-_arm_drag.jpg"
+                    alt="Arm drag technique in grappling"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="guard-img-placeholder" style="display:none; aspect-ratio:4/3;">
+                    <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <span>Technique Illustration</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="backtakes">
-        <h3>Taking the Back</h3>
-        <p>The back is the great equalizer. It is the only position where their size offers zero offensive advantage.</p>
-        
-        <h4>The Arm Drag</h4>
-        <p>Secure a cross-grip on the wrist and a high grip on their triceps. Do not try to drag their weight; use their anchored arm as a post to scoot your own hips to the outside.</p>
+    <!-- ── BACK TAKES ── -->
+    <section id="backtakes" class="section">
+        <div class="section-label">02 — Position</div>
+        <h2>Taking the Back</h2>
+        <p>The back is the great equalizer. It is the only position where their size offers zero offensive advantage. All their mass now works against them.</p>
 
-        <h4>The Kimura Trap to Chair Sit</h4>
-        <ol>
-            <li><strong>Lock the Figure-Four:</strong> Weave your arm through and secure a tight Kimura grip from top side control or half guard.</li>
-            <li><strong>Force the Defense:</strong> When they lock their hands or grab their belt, they have anchored their shoulder to your chest.</li>
-            <li><strong>Post and Clear:</strong> Step your outside leg completely over their head, entering a "chair sit" position.</li>
-            <li><strong>Leverage the Roll:</strong> Sit back toward their hips, pulling the grip with you. Their own locked hands will act as a lever, forcing them to roll and exposing their back for your hooks.</li>
-        </ol>
+        <div class="two-col" style="margin-top:2.5rem;">
+            <div>
+                <h3 style="font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:700; text-transform:uppercase; color:var(--gold-light); margin-bottom:1rem;">The Arm Drag</h3>
+                <p>Secure a cross-grip on the wrist and a high grip on their triceps. Do not try to drag their weight — use their anchored arm as a post to scoot your own hips to the outside.</p>
+                <p>The key insight: you are moving around them, not moving them. Their defensive post becomes your lever.</p>
+            </div>
+            <div>
+                <h3 style="font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:700; text-transform:uppercase; color:var(--gold-light); margin-bottom:1rem;">Kimura Trap → Chair Sit</h3>
+                <ol class="steps">
+                    <li><strong>Lock the Figure-Four</strong>Weave your arm through and secure a tight Kimura grip from top side control or half guard.</li>
+                    <li><strong>Force the Defense</strong>When they lock their hands or grab their belt, they've anchored their shoulder to your chest.</li>
+                    <li><strong>Post and Clear</strong>Step your outside leg completely over their head, entering the "chair sit" position.</li>
+                    <li><strong>Leverage the Roll</strong>Sit back toward their hips. Their own locked hands act as a lever, forcing the roll and exposing the back.</li>
+                </ol>
+            </div>
+        </div>
     </section>
 
-    <section id="mount">
-        <h3>Maintaining the Heavy Mount</h3>
-        <p>If you secure the mount, do not let them launch you back to guard with an Upa (bridge).</p>
-        <ul>
-            <li><strong>Play Low Mount First:</strong> Drop your hips flat against theirs and insert grapevines (threading your feet under their ankles). Stretch their legs out so they cannot plant their feet to bridge.</li>
-            <li><strong>Spinal Misalignment:</strong> Secure a deep crossface to turn their jaw away from you, and underhook the far arm. Where the head goes, the body follows.</li>
-            <li><strong>The Wet Blanket:</strong> Do not squeeze tightly with your thighs—this makes you rigid and easy to tip over. Relax your muscles, sink your weight, and make them carry 100% of your mass.</li>
+    <!-- ── MOUNT ── -->
+    <section id="mount" class="section">
+        <div class="section-label">03 — Dominance</div>
+        <h2>Maintaining the<br>Heavy Mount</h2>
+        <p>Once you secure mount, the goal is to prevent the Upa (bridge). A bigger person can easily launch a smaller grappler if you play it wrong.</p>
+
+        <ul class="bullets" style="margin-top:2rem;">
+            <li>
+                <div>
+                    <strong>Play Low Mount First</strong>
+                    Drop your hips flat against theirs and insert grapevines (thread your feet under their ankles). Stretching their legs prevents them planting feet to bridge.
+                </div>
+            </li>
+            <li>
+                <div>
+                    <strong>Spinal Misalignment</strong>
+                    Secure a deep crossface to turn their jaw away from you, and underhook the far arm. Where the head goes, the body follows — their bridge becomes a log roll you ride.
+                </div>
+            </li>
+            <li>
+                <div>
+                    <strong>The Wet Blanket</strong>
+                    Do not squeeze tightly with your thighs — this makes you rigid and easy to tip. Relax your muscles, sink your weight, and make them carry 100% of your mass. Become water.
+                </div>
+            </li>
+            <li>
+                <div>
+                    <strong>Transition Early</strong>
+                    If the mount feels unstable, transition to mount-triangle or arm-triangle early rather than fight for mount. Submissions from unstable positions are better than a good position reversed.
+                </div>
+            </li>
         </ul>
     </section>
 
-    <section id="guards">
-        <h3>The Guard Gallery</h3>
-        <p>Guards that dictate distance and keep their weight off your center line.</p>
-        
-        <div class="gallery-grid">
-            <div class="card">
-                <div class="card-img">[ Image: Knee Shield / Z-Guard ]</div>
-                <div class="card-content">
-                    <h4>Knee Shield</h4>
-                    <p>Place your top shin across their chest or biceps to create a structural wall. Perfect for stopping the smash pass.</p>
+    <!-- ── GUARD GALLERY ── -->
+    <section id="guards" class="section" style="max-width:100%; padding-left:0; padding-right:0; border-bottom:1px solid var(--border);">
+        <div style="max-width:1100px; margin:0 auto; padding:0 2rem 2rem;">
+            <div class="section-label">04 — Guard Gallery</div>
+            <h2>Complete Guard<br>Systems Reference</h2>
+            <div class="guard-intro">
+                <p>Each guard below is selected for a smaller grappler's needs: distance management, mechanical advantage, and the ability to threaten submissions without relying on raw strength. Study the position type, ideal use case, and threat portfolio before drilling.</p>
+            </div>
+        </div>
+
+        <div class="guard-grid" style="border-left:none; border-right:none;">
+
+            <!-- 1. Butterfly Guard -->
+            <div class="guard-card">
+                <div class="guard-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Brazilian_jiu-jitsu_guard.jpg/640px-Brazilian_jiu-jitsu_guard.jpg"
+                         alt="Butterfly guard position"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="guard-img-placeholder" style="display:none;">
+                        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#333" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+                        <span>Butterfly Guard</span>
+                    </div>
+                    <span class="guard-tag tag-open">Open Guard</span>
+                </div>
+                <div class="guard-body">
+                    <div class="guard-name">Butterfly Guard</div>
+                    <div class="guard-aka">Hooks Guard</div>
+                    <p class="guard-desc">Seat your feet as hooks inside their thighs while controlling their posture with underhooks or head control. Uses their own forward pressure to elevate and sweep — the bigger they drive in, the easier the lift.</p>
+                    <div class="guard-meta">
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Difficulty</div>
+                            <div class="guard-meta-val">Intermediate</div>
+                            <div class="strength-bar"><div class="strength-fill" style="width:60%"></div></div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Best Against</div>
+                            <div class="guard-meta-val">Aggressive Passers</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Ideal Range</div>
+                            <div class="guard-meta-val">Close / Contact</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Gi / No-Gi</div>
+                            <div class="guard-meta-val">Both</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="guard-attacks">
+                    <div class="guard-attacks-label">Primary Threats</div>
+                    <div class="attack-chips">
+                        <span class="chip">Elevator Sweep</span>
+                        <span class="chip">Back Take</span>
+                        <span class="chip">Arm Drag</span>
+                        <span class="chip">Kimura</span>
+                        <span class="chip">D'Arce</span>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-img">[ Image: Butterfly Guard ]</div>
-                <div class="card-content">
-                    <h4>Butterfly Guard</h4>
-                    <p>Uses your feet as hooks inside their thighs. Fall back and use their own forward driving momentum to elevate and sweep them.</p>
+
+            <!-- 2. Knee Shield (Z-Guard) -->
+            <div class="guard-card">
+                <div class="guard-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Jiu-jitsu_Barra_da_Tijuca.jpg/640px-Jiu-jitsu_Barra_da_Tijuca.jpg"
+                         alt="Half guard with knee shield"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="guard-img-placeholder" style="display:none;">
+                        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#333" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        <span>Z-Guard</span>
+                    </div>
+                    <span class="guard-tag tag-half">Half Guard</span>
+                </div>
+                <div class="guard-body">
+                    <div class="guard-name">Knee Shield</div>
+                    <div class="guard-aka">Z-Guard / Half Butterfly</div>
+                    <p class="guard-desc">Place your top shin across their chest or bicep to create a structural wall that no amount of strength can simply press through. Your skeletal frame does the work. Critical for stopping the smash pass from heavy opponents.</p>
+                    <div class="guard-meta">
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Difficulty</div>
+                            <div class="guard-meta-val">Beginner–Mid</div>
+                            <div class="strength-bar"><div class="strength-fill" style="width:40%"></div></div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Best Against</div>
+                            <div class="guard-meta-val">Smashers / Heavies</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Ideal Range</div>
+                            <div class="guard-meta-val">Half Guard</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Gi / No-Gi</div>
+                            <div class="guard-meta-val">Both</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="guard-attacks">
+                    <div class="guard-attacks-label">Primary Threats</div>
+                    <div class="attack-chips">
+                        <span class="chip">Dogfight / Back Take</span>
+                        <span class="chip">Old School Sweep</span>
+                        <span class="chip">Kimura</span>
+                        <span class="chip">Triangle</span>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-img">[ Image: Spider Guard ]</div>
-                <div class="card-content">
-                    <h4>Spider Guard</h4>
-                    <p>Control the sleeves and place your feet directly on their biceps. This pits the strength of your leg press against their shoulders.</p>
+
+            <!-- 3. Spider Guard -->
+            <div class="guard-card">
+                <div class="guard-img-wrap">
+                    <div class="guard-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+                            <circle cx="50" cy="30" r="14" stroke="#444" stroke-width="2"/>
+                            <line x1="36" y1="44" x2="10" y2="60" stroke="#444" stroke-width="2"/>
+                            <line x1="64" y1="44" x2="90" y2="60" stroke="#444" stroke-width="2"/>
+                            <line x1="50" y1="44" x2="30" y2="80" stroke="#444" stroke-width="2"/>
+                            <line x1="50" y1="44" x2="70" y2="80" stroke="#444" stroke-width="2"/>
+                            <circle cx="10" cy="62" r="5" stroke="#666" stroke-width="1.5"/>
+                            <circle cx="90" cy="62" r="5" stroke="#666" stroke-width="1.5"/>
+                            <circle cx="30" cy="82" r="5" stroke="#666" stroke-width="1.5"/>
+                            <circle cx="70" cy="82" r="5" stroke="#666" stroke-width="1.5"/>
+                        </svg>
+                        <span>Spider Guard</span>
+                    </div>
+                    <span class="guard-tag tag-open">Open Guard</span>
+                </div>
+                <div class="guard-body">
+                    <div class="guard-name">Spider Guard</div>
+                    <div class="guard-aka">Lasso & Bicep Control</div>
+                    <p class="guard-desc">Control the sleeves and place your feet directly on their biceps. This pits the pushing strength of your legs against their shoulder muscles — a matchup you always win. Excellent distance control from a Gi context.</p>
+                    <div class="guard-meta">
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Difficulty</div>
+                            <div class="guard-meta-val">Intermediate</div>
+                            <div class="strength-bar"><div class="strength-fill" style="width:60%"></div></div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Best Against</div>
+                            <div class="guard-meta-val">Standing Passers</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Ideal Range</div>
+                            <div class="guard-meta-val">Long / Extended</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Gi / No-Gi</div>
+                            <div class="guard-meta-val">Gi Only</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="guard-attacks">
+                    <div class="guard-attacks-label">Primary Threats</div>
+                    <div class="attack-chips">
+                        <span class="chip">Tomoe Nage</span>
+                        <span class="chip">Triangle</span>
+                        <span class="chip">Omoplata</span>
+                        <span class="chip">Triangle</span>
+                        <span class="chip">Spider Sweep</span>
+                    </div>
                 </div>
             </div>
+
+            <!-- 4. De La Riva -->
+            <div class="guard-card">
+                <div class="guard-img-wrap">
+                    <div class="guard-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+                            <circle cx="35" cy="35" r="16" stroke="#444" stroke-width="2"/>
+                            <path d="M51 35 Q75 20 90 35 Q75 55 60 60" stroke="#555" stroke-width="2" fill="none"/>
+                            <path d="M35 51 Q20 70 30 85" stroke="#555" stroke-width="2" fill="none"/>
+                            <circle cx="30" cy="87" r="5" stroke="#666" stroke-width="1.5"/>
+                            <circle cx="90" cy="35" r="6" stroke="#666" stroke-width="1.5"/>
+                        </svg>
+                        <span>De La Riva Guard</span>
+                    </div>
+                    <span class="guard-tag tag-open">Open Guard</span>
+                </div>
+                <div class="guard-body">
+                    <div class="guard-name">De La Riva</div>
+                    <div class="guard-aka">DLR / Outside Hook Guard</div>
+                    <p class="guard-desc">Hook your outside leg around the back of their lead leg while gripping their ankle with your same-side hand. Your hook disrupts their base from the outside — effective at any size because you control the foundation, not the torso.</p>
+                    <div class="guard-meta">
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Difficulty</div>
+                            <div class="guard-meta-val">Intermediate–Adv</div>
+                            <div class="strength-bar"><div class="strength-fill" style="width:75%"></div></div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Best Against</div>
+                            <div class="guard-meta-val">Standing Opponents</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Ideal Range</div>
+                            <div class="guard-meta-val">Mid / Extended</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Gi / No-Gi</div>
+                            <div class="guard-meta-val">Both (Gi preferred)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="guard-attacks">
+                    <div class="guard-attacks-label">Primary Threats</div>
+                    <div class="attack-chips">
+                        <span class="chip">Back Take</span>
+                        <span class="chip">Berimbolo</span>
+                        <span class="chip">Kiss of Dragon</span>
+                        <span class="chip">DLR Sweep</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Rubber Guard -->
+            <div class="guard-card">
+                <div class="guard-img-wrap">
+                    <div class="guard-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+                            <circle cx="50" cy="50" r="18" stroke="#444" stroke-width="2"/>
+                            <path d="M50 32 Q85 15 88 50 Q85 85 50 68" stroke="#555" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+                            <path d="M50 32 Q15 15 12 50 Q15 85 50 68" stroke="#555" stroke-width="2" fill="none"/>
+                            <circle cx="88" cy="50" r="5" stroke="#666" stroke-width="1.5"/>
+                        </svg>
+                        <span>Rubber Guard</span>
+                    </div>
+                    <span class="guard-tag tag-closed">Closed Guard</span>
+                </div>
+                <div class="guard-body">
+                    <div class="guard-name">Rubber Guard</div>
+                    <div class="guard-aka">Mission Control / New York</div>
+                    <p class="guard-desc">From closed guard, break their posture and pull your shin to your shoulder to trap their arm. This system (developed by Eddie Bravo) uses flexibility to create a constant threat web — each position flows into the next and keeps one arm trapped.</p>
+                    <div class="guard-meta">
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Difficulty</div>
+                            <div class="guard-meta-val">Advanced</div>
+                            <div class="strength-bar"><div class="strength-fill" style="width:85%"></div></div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Best Against</div>
+                            <div class="guard-meta-val">Postured Grapplers</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Ideal Range</div>
+                            <div class="guard-meta-val">Closed / Clinch</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Gi / No-Gi</div>
+                            <div class="guard-meta-val">No-Gi Preferred</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="guard-attacks">
+                    <div class="guard-attacks-label">Primary Threats</div>
+                    <div class="attack-chips">
+                        <span class="chip">Omoplata</span>
+                        <span class="chip">Gogoplata</span>
+                        <span class="chip">Triangle</span>
+                        <span class="chip">Kung Fu Move</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Lasso Guard -->
+            <div class="guard-card">
+                <div class="guard-img-wrap">
+                    <div class="guard-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+                            <circle cx="40" cy="35" r="14" stroke="#444" stroke-width="2"/>
+                            <path d="M54 35 Q80 25 85 50 Q80 65 65 60 Q55 55 60 45 Q65 35 54 35" stroke="#555" stroke-width="2" fill="none"/>
+                            <path d="M40 49 Q25 65 30 82" stroke="#555" stroke-width="2" fill="none"/>
+                            <circle cx="30" cy="84" r="5" stroke="#666" stroke-width="1.5"/>
+                        </svg>
+                        <span>Lasso Guard</span>
+                    </div>
+                    <span class="guard-tag tag-open">Open Guard</span>
+                </div>
+                <div class="guard-body">
+                    <div class="guard-name">Lasso Guard</div>
+                    <div class="guard-aka">Sleeve Lasso / Lasso-Spider</div>
+                    <p class="guard-desc">Thread your leg through their arm to create a lasso wrap. This entangles their limb and creates enormous rotational torque — the bigger they are, the more damaging the leverage. Frequently combined with spider guard on the other side.</p>
+                    <div class="guard-meta">
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Difficulty</div>
+                            <div class="guard-meta-val">Intermediate</div>
+                            <div class="strength-bar"><div class="strength-fill" style="width:60%"></div></div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Best Against</div>
+                            <div class="guard-meta-val">Torreando Passers</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Ideal Range</div>
+                            <div class="guard-meta-val">Mid / Extended</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Gi / No-Gi</div>
+                            <div class="guard-meta-val">Gi Only</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="guard-attacks">
+                    <div class="guard-attacks-label">Primary Threats</div>
+                    <div class="attack-chips">
+                        <span class="chip">Omoplata</span>
+                        <span class="chip">Triangle</span>
+                        <span class="chip">Hook Sweep</span>
+                        <span class="chip">Back Take</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. X-Guard -->
+            <div class="guard-card">
+                <div class="guard-img-wrap">
+                    <div class="guard-img-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+                            <line x1="20" y1="20" x2="80" y2="80" stroke="#444" stroke-width="3"/>
+                            <line x1="80" y1="20" x2="20" y2="80" stroke="#444" stroke-width="3"/>
+                            <circle cx="50" cy="50" r="14" stroke="#555" stroke-width="2"/>
+                            <circle cx="20" cy="20" r="6" stroke="#666" stroke-width="1.5"/>
+                            <circle cx="80" cy="80" r="6" stroke="#666" stroke-width="1.5"/>
+                        </svg>
+                        <span>X-Guard</span>
+                    </div>
+                    <span class="guard-tag tag-open">Open Guard</span>
+                </div>
+                <div class="guard-body">
+                    <div class="guard-name">X-Guard</div>
+                    <div class="guard-aka">Full X / Single-Leg X</div>
+                    <p class="guard-desc">Scoot under their base and form an X-frame with both legs around their lead leg or hip. You are now directly underneath them — any movement they make creates instability. Popularized by Marcelo Garcia for neutralizing larger opponents.</p>
+                    <div class="guard-meta">
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Difficulty</div>
+                            <div class="guard-meta-val">Advanced</div>
+                            <div class="strength-bar"><div class="strength-fill" style="width:80%"></div></div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Best Against</div>
+                            <div class="guard-meta-val">Heavy Stackers</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Ideal Range</div>
+                            <div class="guard-meta-val">Under / Clinch</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Gi / No-Gi</div>
+                            <div class="guard-meta-val">Both</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="guard-attacks">
+                    <div class="guard-attacks-label">Primary Threats</div>
+                    <div class="attack-chips">
+                        <span class="chip">Tilt Sweep</span>
+                        <span class="chip">Back Take</span>
+                        <span class="chip">Single Leg X Heel Hook</span>
+                        <span class="chip">Ankle Lock</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Closed Guard -->
+            <div class="guard-card">
+                <div class="guard-img-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Brazilian_jiu-jitsu_guard.jpg/640px-Brazilian_jiu-jitsu_guard.jpg"
+                         alt="Closed guard BJJ"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         style="filter: hue-rotate(160deg) brightness(0.7);">
+                    <div class="guard-img-placeholder" style="display:none;">
+                        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="#333" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 12h6"/></svg>
+                        <span>Closed Guard</span>
+                    </div>
+                    <span class="guard-tag tag-closed">Closed Guard</span>
+                </div>
+                <div class="guard-body">
+                    <div class="guard-name">Closed Guard</div>
+                    <div class="guard-aka">Full Guard / The Foundation</div>
+                    <p class="guard-desc">Legs locked behind their back, breaking their posture is paramount. Against bigger opponents, hip escapes and angle-changing are more important than strength. The closed guard is your safety net — master posture breaking before chasing fancier guards.</p>
+                    <div class="guard-meta">
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Difficulty</div>
+                            <div class="guard-meta-val">Beginner</div>
+                            <div class="strength-bar"><div class="strength-fill" style="width:25%"></div></div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Best Against</div>
+                            <div class="guard-meta-val">Posture-Breakers</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Ideal Range</div>
+                            <div class="guard-meta-val">Clinch / Control</div>
+                        </div>
+                        <div class="guard-meta-item">
+                            <div class="guard-meta-label">Gi / No-Gi</div>
+                            <div class="guard-meta-val">Both</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="guard-attacks">
+                    <div class="guard-attacks-label">Primary Threats</div>
+                    <div class="attack-chips">
+                        <span class="chip">Armbar</span>
+                        <span class="chip">Triangle</span>
+                        <span class="chip">Guillotine</span>
+                        <span class="chip">Hip Bump Sweep</span>
+                        <span class="chip">Scissor Sweep</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <section id="videos">
-        <h3>Diss BJJ Video Library</h3>
-        <p>Study these mechanics before your weekend rolls. Here are curated breakdowns of the core techniques we use to neutralize size and strength.</p>
-        
+    <!-- ── VIDEO LIBRARY ── -->
+    <section id="videos" class="section">
+        <div class="section-label">05 — Study</div>
+        <h2>Video Library</h2>
+        <p>Study these mechanics before your weekend rolls. Curated breakdowns of the core techniques that neutralize size and strength.</p>
+
         <div class="video-grid">
-            <!-- Video 1 -->
             <div class="video-card">
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/p1k1I14aG08" title="Arm Drag Breakdown" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
                     <h4>The 2-on-1 Arm Drag</h4>
-                    <p>A detailed look at using the opponent's anchored weight as a post to pull yourself to the back.</p>
+                    <p>Using the opponent's anchored weight as a post to pull yourself to the back.</p>
                 </div>
             </div>
-
-            <!-- Video 2 -->
             <div class="video-card">
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/l592wR1-tEE" title="Kimura Trap System" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
                     <h4>Kimura Trap to Chair Sit</h4>
-                    <p>Watch how to use the Kimura grip defensively to force the roll and secure the back hooks.</p>
+                    <p>Using the Kimura grip defensively to force the roll and secure the back hooks.</p>
                 </div>
             </div>
-
-            <!-- Video 3 -->
             <div class="video-card">
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/5U2V2dGZ5r4" title="Heavy Mount Mechanics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="video-info">
                     <h4>Heavy Mount Mechanics</h4>
-                    <p>Visualizing the wet blanket concept, grapevines, and spinal misalignment to stop the bridge.</p>
+                    <p>The wet blanket concept, grapevines, and spinal misalignment to stop the bridge.</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/kFDj7jFkz9o" title="Butterfly Guard" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>Butterfly Guard System</h4>
+                    <p>Complete butterfly guard entry, sweeps, and back take sequences.</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/3wqznnO0Ras" title="X-Guard Sweeps" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>X-Guard Entries & Sweeps</h4>
+                    <p>How to enter the X-guard from failed guard passes and execute fundamental sweeps.</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/o6nGqRp9LCk" title="De La Riva Guard" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>De La Riva Guard Fundamentals</h4>
+                    <p>DLR hook placement, gripping, and the core sweep/back-take decision tree.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Giant-Slayer Playbook. Focus on frames, angles, and cardio.</p>
+        <div class="footer-logo">Giant-Slayer Playbook</div>
+        <p style="margin-top:0.5rem;">Focus on frames, angles, and cardio. &copy; 2026</p>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
+        });
+
+        // Animate strength bars on scroll
+        const bars = document.querySelectorAll('.strength-fill');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.getAttribute('data-width') || entry.target.style.width;
+                }
+            });
+        }, { threshold: 0.3 });
+
+        bars.forEach(bar => {
+            const width = bar.style.width;
+            bar.setAttribute('data-width', width);
+            bar.style.width = '0';
+            setTimeout(() => { bar.style.width = width; }, 300);
+            observer.observe(bar);
         });
     </script>
 </body>
